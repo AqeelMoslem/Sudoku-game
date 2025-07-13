@@ -1,18 +1,6 @@
-/* .board {
-  display: flex;
-  flex-wrap: wrap;
-  width: 325px;
-} */
-
-/* .sqr {
-  width: 30%;
-  aspect-ratio: 1/1;
-  border: 3px solid black;
-  font-size: 64px;
-  text-align: center;
-} */
-
-
+.hidden{
+  display: none;
+}
 #reset {
     background-color: black;
     color: aqua;
@@ -21,6 +9,11 @@
   display: flex;
   justify-content: center;
 }
+.hint {
+  color: gray;
+  font-size: 10pt;
+}
+
 
 numbers-inserts > p {
   border: 1px solid black;
@@ -38,26 +31,26 @@ numbers-inserts > p {
   flex-wrap: wrap;
   justify-content: center;
   align-content: flex-start;
-  width: 600px;
-  height: 600px;
+  width: 300px;
+  height: 300px;
 }
 .tile{
   border: 1px solid black;
-  width: 60px;
-  height: 60px;
+  width: 30px;
+  height: 30px;
   text-align: center;
   margin: 0;
   vertical-align: middle;
-  font-size: 40pt;
+  font-size: 20pt;
 }
 p.selected {
   background-color: aqua;
 }
 .bottomBorder{
-border-bottom: 4px solid black;
+border-bottom: 3px solid black;
 }
 .rightBorder{
-border-right: 4px solid black;
+border-right: 3px solid black;
 }
 footer{
   text-align: center;

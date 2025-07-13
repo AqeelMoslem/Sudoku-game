@@ -1,81 +1,100 @@
 /*-------------------------------- Constants --------------------------------*/
 
-document.addEventListener("DOMContentLoaded", function () {
-  const playButton = document.getElementById("play");
-  const levelSelect = document.getElementById("level");
+// const playButton = document.getElementById("play");
 
-  if (playButton && levelSelect) {
-    playButton.addEventListener("click", function () {
-      const level = levelSelect.value;
+// playButton.addEventListener("click", function () {
+//   window.location.href = "play.html";
+// });
 
-      if (!level) {
-        alert("Please select a level before continuing.");
-        return;
-      }
 
-      localStorage.setItem("level", level);
-      window.location.href = "play.html";
-    });
-  }})
 /*---------------------------- Variables (state) ----------------------------*/
 
  
-const easy = [["----9-7-33-67-5-1-1---3--9-4--3-8--2---4-918--2-----74---98----83--576------1-8--"]]
+const easy = [
+  ['-', '-', '-', '-', '9', '-', '7', '-', '3'],
+  ['3', '-', '6', '7', '-', '5', '-', '1', '-'],
+  ['1', '-', '-', '-', '3', '-', '-', '9', '-'],
+  ['4', '-', '-', '3', '-', '8', '-', '-', '2'],
+  ['-', '-', '-', '4', '-', '9', '1', '8', '-'],
+  ['-', '2', '-', '-', '-', '-', '-', '7', '4'],
+  ['-', '-', '-', '9', '8', '-', '-', '-', '-'],
+  ['8', '3', '-', '-', '5', '7', '6', '-', '-'],
+  ['-', '-', '-', '-', '1', '-', '8', '-', '-']
+];
+
 
 
 let selectnum,selectTile;
-let usedNumbers, disSelect ;
+let  disSelect ;
 /*-------------------------------- Functions --------------------------------*/
 
 window.onload = function(){
- id("start").addEventListener("click",PlayGame)
+ id("Start").addEventListener("click",PlayGame)
 }
 function PlayGame(){
   let board
-  if(id("easy").checked) board = easy[0] ;
-  //88888
+  if(id("difer1").checked) board = easy ;
   disSelect = false;
-
-  //55555
   generateBoard(board)
 }
 
-function generateBoard (board){
- clearPrev ()
- let counti = 0
- for(let i = 0; i < 81;i++){
-  let tile = document.createElement("p")
-  if (board[i]!= "-"){
-    tile.textContent = board[i]
-  } else {
-     
+
+
+function generateBoard(boardArray) {
+  clearPrev();
+  let counter = 0;
+
+  for (let row = 0; row < 9; row++) {
+    for (let col = 0; col < 9; col++) {
+      let tile = document.createElement("p");
+
+      const value = boardArray[row][col];
+      if (value !== "-") {
+        tile.textContent = value;
+      }
+
+      tile.id = counter;
+      counter++;
+
+      tile.classList.add("tile");
+
+      
+      if (row === 2 || row === 5) {
+        tile.classList.add("bottomBorder");
+      }
+      if (col === 2 || col === 5) {
+        tile.classList.add("rightBorder");
+      }
+
+      id("board").appendChild(tile);
+    }
   }
-  tile.id = counti
-  counti ++;
-  tile.classList.add("tile")
-  ///888 
-  if ((tile.id>17 && tile.id < 27 )||(tile.id>44 && tile.id < 54 )){
-    tile.classList.add("bottomBorder")
-  }
-  if ((tile.id +1)% 9 === 3 || (tile.id +1)% 9 === 6 )
-    tile.classList.add("rightBorder")
- }
- id("board").appendChild(tile)
 }
+
+
+
 
 function clearPrev () {
   let tiles = qsa(".tile")
   for(let i=0;i < tiles.length ; i++){
     tiles[i].remove()
   }
-  for(let i=0;i < id(".numbers-inserts").children.length ; i++){
+  for(let i=0;i < 9 ; i++){
     id("numbers-inserts").children[i].classList.remove("selected")
   }
   selectTile = null
   selectnum = null
-
 }
+
+
 function id(id){
-  return document.getElementById(id)
+  return document.getElementById(id);
 }
 
+function qs(selector){
+return document.querySelector(selector)
+}
+
+function qsa(selector){
+  return document.querySelectorAll(selector)
+}
