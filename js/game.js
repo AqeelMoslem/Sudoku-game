@@ -21,21 +21,61 @@ const easy = [
   ['8', '3', '-', '-', '5', '7', '6', '-', '-'],
   ['-', '-', '-', '-', '1', '-', '8', '-', '-']
 ];
-
+ 
+const Medium = [
+  ['-', '-', '-', '-', '7', '-', '-', '3', '-'],
+  ['-', '-', '-', '8', '-', '1', '-', '-', '-'],
+  ['-', '3', '-', '-', '-', '9', '-', '-', '-'],
+  ['-', '-', '-', '7', '6', '-', '1', '8', '-'],
+  ['-', '1', '-', '-', '-', '-', '-', '7', '-'],
+  ['3', '8', '-', '-', '1', '5', '-', '-', '-'],
+  ['-', '6', '-', '2', '8', '4', '-', '-', '-'],
+  ['-', '-', '-', '-', '-', '-', '-', '9', '-'],
+  ['-', '-', '-', '3', '9', '-', '2', '1', '8']
+];
 
 
 let selectnum,selectTile;
-let  disSelect ;
+let  disSelect,level ;
 /*-------------------------------- Functions --------------------------------*/
 
 window.onload = function(){
  id("Start").addEventListener("click",PlayGame)
+
+ for (let num = 0; num < id("numbers-inserts").children.length; num++) {
+  id("numbers-inserts").children[num].addEventListener("click",function(){
+    if (!disSelect) {
+      if (this.classList.contains("selected")) {
+        this.classList.remove("selected")
+        selectnum = null
+      } else{
+        for (let nm = 0; nm < 9; nm++) {
+          id("numbers-inserts").children[nm].classList.remove("selected")}
+          this.classList.add("selected")
+          selectnum=this;
+          updatemove();
+      }
+    }
+  })
+  
+  
+ }
 }
 function PlayGame(){
   let board
-  if(id("difer1").checked) board = easy ;
+ 
+  if(id("difer1").checked) {board = easy
+      level = "easy";
+  } 
+  else if(id("difer2").checked) {
+    board = Medium
+      level = "Medium";
+  
+  } 
   disSelect = false;
   generateBoard(board)
+
+  id("numbers-inserts").classList.remove("hidden")
 }
 
 
@@ -51,12 +91,37 @@ function generateBoard(boardArray) {
       const value = boardArray[row][col];
       if (value !== "-") {
         tile.textContent = value;
+      } else {
+        tile.addEventListener("click", function(){
+          if(!disSelect){
+           
+          if (this.classList.contains("selected")) {
+        this.classList.remove("selected")
+        selectnum = null
+      } else{
+        for (let row = 0; row < 9; row++) {
+          for (let col = 0; col < 9; col++) {
+          qsa(".tile")[row][col].classList.remove("selected")}}
+          this.classList.add("selected")
+          selectnum=tile;
+          updatemove();
+      }
+          }
+        })
       }
 
       tile.id = counter;
       counter++;
 
       tile.classList.add("tile");
+if (level === "Medium") {
+  
+  if((row === 2 && col === 1 )||(row === 3 && col === 1)){
+    tile.setAttribute("data-hint", "3 + ? = 12")
+  tile.style.backgroundColor = "greenyellow" ;
+  }
+}
+      
 
       
       if (row === 2 || row === 5) {
@@ -71,7 +136,11 @@ function generateBoard(boardArray) {
   }
 }
 
-
+function updatemove(){
+  if (selectTile && selectnum) {
+    selectTile.textContent= selectnum.textContent
+  }
+}
 
 
 function clearPrev () {
