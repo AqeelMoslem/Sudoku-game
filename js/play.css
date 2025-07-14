@@ -17,7 +17,7 @@
   font-size: 10pt;
 }
 
-/* #numbers-inserts {
+#numbers-inserts {
   display: grid;
   grid-template-columns: repeat(3, 30px); 
   grid-gap: 8px; 
@@ -28,7 +28,7 @@
   border-radius: 10px;
   width: fit-content;
   margin: 10px auto;
-} */
+}
 
 #numbers-inserts > p {
   border: 1px solid black;
@@ -70,6 +70,12 @@
 .tile {
   position: relative;
 }
+.tile.selected {
+  background-color: #a0e7e5;
+  border: 1px solid #0077b6;
+  box-shadow: 0 0 5px #0077b6;
+  transition: all 0.2s ease;
+}
 
 .tile:hover::after {
   content: attr(data-hint);
@@ -88,9 +94,15 @@
   box-shadow: 0 0 5px rgba(0,0,0,0.3);
 }
 
-p.selected {
+#numbers-inserts > p.selected {
   background-color: aqua;
+  color: black;
+  font-weight: bold;
+  border: 2px solid black;
+  transform: scale(1.1); /* يكبر شوي */
+  transition: all 0.2s ease;
 }
+
 .bottomBorder{
 border-bottom: 3px solid black;
 }
@@ -100,4 +112,11 @@ border-right: 3px solid black;
 footer{
   text-align:start;
   background-color: lightgrey;
+}
+.tile.correct {
+  background-color: lightgreen;
+}
+.incorrect {
+  background-color: lightcoral;
+  transition: background-color 0.3s ease;
 }
