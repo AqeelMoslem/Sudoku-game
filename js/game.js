@@ -186,18 +186,23 @@ function checkAllTiles() {
     }
   });
 
-  const messageEl = id("message");
-  if (foundError) {
-    gameOver = true;
-    messageEl.style.color = "red";
-    messageEl.textContent = "There are errors! You must restart to try again.";
-  } else if (incomplete) {
-    messageEl.style.color = "black";
-    messageEl.textContent = "Please complete all the cells before checking.";
-  } else {
-    messageEl.style.color = "green";
-    messageEl.textContent = "Congratulations! All answers are correct.";
-  }
+const messageEl = id("message");
+
+if (incomplete) {
+  disSelect = true;
+  messageEl.style.color = "black";
+  messageEl.textContent = "Please complete all the blocks.";
+} else if (foundError) {
+  gameOver = true;
+  disSelect = true;
+  messageEl.style.color = "red";
+  messageEl.textContent = "There are errors! You must restart to try again.";
+} else {
+  disSelect = true;
+  messageEl.style.color = "green";
+  messageEl.textContent = "Congratulations! All answers are correct.";
+}
+
 }
 
 
