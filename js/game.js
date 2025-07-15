@@ -2,17 +2,27 @@
 
 /*-------------------------------- Constants --------------------------------*/
 
-const easy = [
-  ['-', '-', '-', '-', '9', '-', '7', '-', '3'],
-  ['3', '-', '6', '7', '-', '5', '-', '1', '-'],
-  ['1', '-', '-', '-', '3', '-', '-', '9', '-'],
-  ['4', '-', '-', '3', '-', '8', '-', '-', '2'],
-  ['-', '-', '-', '4', '-', '9', '1', '8', '-'],
-  ['-', '2', '-', '-', '-', '-', '-', '7', '4'],
-  ['-', '-', '-', '9', '8', '-', '-', '-', '-'],
-  ['8', '3', '-', '-', '5', '7', '6', '-', '-'],
-  ['-', '-', '-', '-', '1', '-', '8', '-', '-']
-];
+const easy = [[
+  ['-', '5', '-', '9', '-', '-', '2', '4', '-'],
+  ['-', '-', '-', '6', '-', '-', '1', '9', '5'],
+  ['9', '-', '-', '2', '-', '4', '-', '-', '3'],
+  ['-', '9', '-', '3', '-', '-', '-', '-', '1'],
+  ['-', '-', '-', '-', '-', '-', '4', '-', '9'],
+  ['7', '4', '-', '-', '-', '1', '5', '-', '6'],
+  ['-', '-', '-', '4', '-', '-', '3', '-', '-'],
+  ['-', '-', '4', '-', '6', '-', '-', '5', '8'],
+  ['-', '-', '9', '-', '3', '-', '6', '-', '-']
+],[
+  ['6', '5', '8', '9', '1', '3', '2', '4', '7'],
+  ['4', '3', '2', '6', '8', '7', '1', '9', '5'],
+  ['9', '1', '7', '2', '5', '4', '8', '6', '3'],
+  ['2', '9', '6', '3', '4', '5', '7', '8', '1'],
+  ['5', '8', '1', '7', '2', '6', '4', '3', '9'],
+  ['7', '4', '3', '8', '9', '1', '5', '2', '6'],
+  ['8', '6', '5', '4', '7', '9', '3', '1', '2'],
+  ['3', '7', '4', '1', '6', '2', '9', '5', '8'],
+  ['1', '2', '9', '5', '3', '8', '6', '7', '4']
+]];
  
 const Medium = [[
   ['-', '-', '-', '-', '7', '-', '-', '3', '-'],
@@ -35,7 +45,6 @@ const Medium = [[
   ['8', '2', '3', '1', '5', '7', '4', '9', '6'],
   ['7', '5', '4', '3', '9', '6', '2', '1', '8']]
 ];
-
 
 let selectnum, selectTile;
 let disSelect, level;
@@ -70,9 +79,11 @@ function PlayGame() {
   let board;
 
   if (id("difer1").checked) {
-    board = easy;
-    level = "easy";
+    // 31 block easy
+    board = easy[0];
+    level = "Easy";
   } else if (id("difer2").checked) {
+    // 26 block 
     board = Medium[0];
     level = "Medium";
   }
@@ -115,12 +126,139 @@ function generateBoard(boardArray) {
 
       tile.classList.add("tile");
 
+      if (level === "Easy") {
+         if ((row === 0 && col === 0)|| (row === 1 && col === 0)|| (row === 2 && col === 0)) {
+          tile.setAttribute("data-hint", "? + ? + 9 = 19");
+          tile.style.backgroundColor = "#ffe1b3";
+        }
+        if ((row === 0 && col === 1)|| (row === 0 && col === 2)) {
+          tile.setAttribute("data-hint", "5 + ? = 13");
+          tile.style.backgroundColor = "greenyellow";
+        }
+        if ((row === 1 && col === 3)|| (row === 2 && col === 3)|| (row === 2 && col === 4)) {
+          tile.setAttribute("data-hint", "6 + 2 + ? = 13");
+          tile.style.backgroundColor = "#ffe1b3";
+        }
+         if ((row === 2 && col === 7)|| (row === 2 && col === 8)) {
+          tile.setAttribute("data-hint", "? + 3 = 9");
+          tile.style.backgroundColor = "#d1f0c4";
+        }
+        if ((row === 3 && col === 0)|| (row === 2 && col === 1)|| (row === 3 && col === 1)|| (row === 3 && col === 2)) {
+          tile.setAttribute("data-hint", "? + 9+ ? + ? = 18");
+          tile.style.backgroundColor = "#fdbcedff";
+        }//#fdbcedff for 4  numbers add
+         if ((row === 5 && col === 1)|| (row === 5 && col === 2)|| (row === 5 && col === 3)|| (row === 5 && col === 4)) {
+          tile.setAttribute("data-hint", "4 + ?+?+ ?= 24");
+          tile.style.backgroundColor = "#fdbcedff";
+        }
+        if ((row === 5 && col === 1)|| (row === 5 && col === 2)|| (row === 5 && col === 3)|| (row === 5 && col === 4)) {
+          tile.setAttribute("data-hint", "4 + ?+?+ ?= 24");
+          tile.style.backgroundColor = "#fdbcedff";
+        }
+        if ((row === 1 && col === 4)|| (row === 1 && col === 5)|| (row === 1 && col === 6)|| (row === 0 && col === 6)) {
+          tile.setAttribute("data-hint", "? + ?+ 1 + 2= 18");
+          tile.style.backgroundColor = "#fdbcedff";
+        }
+        if ((row === 5 && col === 6)|| (row === 5 && col === 7)|| (row === 5 && col === 8)) {
+          tile.setAttribute("data-hint", "5 +? +6 = 13");
+          tile.style.backgroundColor = "#ffe1b3";
+        }
+        if ((row === 7 && col === 5)|| (row === 7 && col === 6)|| (row === 7 && col === 7)) {
+          tile.setAttribute("data-hint", "? +? +5= 16");
+          tile.style.backgroundColor = "#ffe1b3";
+        }
+        if ((row === 7 && col === 3)|| (row === 7 && col === 4)) {
+          tile.setAttribute("data-hint", "? +6= 7");
+          tile.style.backgroundColor = "#cceaff";
+        }
+        if ((row === 5 && col === 5)|| (row === 6 && col === 5)|| (row === 6 && col === 6)) {
+          tile.setAttribute("data-hint", "1+?+3=13");
+          tile.style.backgroundColor = "#d1f0c4";
+        }
+        if ((row === 4 && col === 0)|| (row === 4 && col === 1)|| (row === 5 && col === 0)) {
+          tile.setAttribute("data-hint", "7+?+?=20");
+          tile.style.backgroundColor = "#ffe1b3";
+        }
+        if ((row === 4 && col === 2)|| (row === 4 && col === 3)|| (row === 3 && col === 3)) {
+          tile.setAttribute("data-hint", "?+?+3=11");
+          tile.style.backgroundColor = "#cceaff";
+        }
+        if ((row === 6 && col === 0)|| (row === 7 && col === 0)) {
+          tile.setAttribute("data-hint", "? +? =11");
+          tile.style.backgroundColor = "#cceaff";
+        }
+        if ((row === 6 && col === 1)|| (row === 6 && col === 2)) {
+          tile.setAttribute("data-hint", "? +? =11");
+          tile.style.backgroundColor = "#d1f0c4";
+        }
+        if ((row === 7 && col === 1)|| (row === 7 && col === 2)) {
+          tile.setAttribute("data-hint", "? +4 =11");
+          tile.style.backgroundColor = "greenyellow";
+        }
+        if ((row === 8 && col === 1)|| (row === 8 && col === 2)) {
+          tile.setAttribute("data-hint", "? +9 =11");
+          tile.style.backgroundColor = "yellowgreen";
+        }
+        if ((row === 8 && col === 0)) {
+          tile.setAttribute("data-hint", "? =1");
+          tile.style.backgroundColor = "yellow";
+        }
+        if ((row === 8 && col === 5)) {
+          tile.setAttribute("data-hint", "? =8");
+          tile.style.backgroundColor = "yellow";
+        }
+        if ((row === 1 && col === 1)) {
+          tile.setAttribute("data-hint", "? =3");
+          tile.style.backgroundColor = "yellow";
+        }
+        if ((row === 8 && col === 3)|| (row === 8 && col === 4)) {
+          tile.setAttribute("data-hint", "? +3 =8");
+          tile.style.backgroundColor = "greenyellow";
+        }
+        if ((row === 6 && col === 7)|| (row === 6 && col === 8)) {
+          tile.setAttribute("data-hint", "? +? =3");
+          tile.style.backgroundColor = "#cceaff";
+        }
+        if ((row === 8 && col === 7)|| (row === 8 && col === 8)) {
+          tile.setAttribute("data-hint", "? +? =11");
+          tile.style.backgroundColor = "#cceaff";
+        }
+        if ((row === 0 && col === 4)|| (row === 0 && col === 5)) {
+          tile.setAttribute("data-hint", "? +? =4");
+          tile.style.backgroundColor = "yellowgreen";
+        }
+        if ((row === 4 && col === 6)|| (row === 4 && col === 7)||(row === 4 && col === 8)) {
+          tile.setAttribute("data-hint", "4+? +9 =16");
+          tile.style.backgroundColor = "#cceaff";
+        }
+        if ((row === 3 && col === 4)|| (row === 3 && col === 5)) {
+          tile.setAttribute("data-hint", "? +? =9");
+          tile.style.backgroundColor = "yellowgreen";
+        }
+        if ((row === 4 && col === 4)|| (row === 4 && col === 5)) {
+          tile.setAttribute("data-hint", "? +? =8");
+          tile.style.backgroundColor = "greenyellow";
+        }
+        if ((row === 3 && col === 7)|| (row === 3 && col === 8)) {
+          tile.setAttribute("data-hint", "? +1 =9");
+          tile.style.backgroundColor = "greenyellow";
+        }
+
+
+
+
+
+
+
+      }
+
       if (level === "Medium") {
         if ((row === 2 && col === 1) || (row === 3 && col === 1)) {
           tile.setAttribute("data-hint", "3 + ? = 12");
           tile.style.backgroundColor = "greenyellow";
         }
       }
+      
 
       if (row === 2 || row === 5) {
         tile.classList.add("bottomBorder");
@@ -140,7 +278,7 @@ function updatemove() {
 
     let solution;
     if (id("difer1").checked) {
-      solution = easy;
+      solution = easy[1];
     } else if (id("difer2").checked) {
       solution = Medium[1];
     }
@@ -189,12 +327,12 @@ function checkAllTiles() {
 const messageEl = id("message");
 
 if (incomplete) {
-  disSelect = true;
+  disSelect = false;
   messageEl.style.color = "black";
   messageEl.textContent = "Please complete all the blocks.";
 } else if (foundError) {
-  gameOver = true;
-  disSelect = true;
+  // gameOver = true;
+  disSelect = false;
   messageEl.style.color = "red";
   messageEl.textContent = "There are errors! You must restart to try again.";
 } else {
