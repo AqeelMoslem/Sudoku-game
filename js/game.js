@@ -269,20 +269,57 @@ function generateBoard(boardArray) {
           tile.setAttribute("data-hint", "? +1 =9");
           tile.style.backgroundColor = "greenyellow";
         }
-
-
-
-
-
-
-
+        
       }
 
       if (level === "Medium") {
+        
+        if ((row === 0 && col === 3) ) {
+          tile.setAttribute("data-hint", "? = 6");
+          tile.style.backgroundColor = "yellow";
+        }
+        if ((row === 2 && col === 4) ) {
+          tile.setAttribute("data-hint", "? = 4");
+          tile.style.backgroundColor = "yellow";
+        }
+        if ((row === 1 && col === 8) ) {
+          tile.setAttribute("data-hint", "? = 9");
+          tile.style.backgroundColor = "yellow";
+        }
+
         if ((row === 2 && col === 1) || (row === 3 && col === 1)) {
           tile.setAttribute("data-hint", "3 + ? = 12");
           tile.style.backgroundColor = "greenyellow";
         }
+        if ((row === 2 && col === 0) || (row === 3 && col === 0)) {
+          tile.setAttribute("data-hint", "? + ? = 10");
+          tile.style.backgroundColor = "yellowgreen";
+        }
+        if ((row === 0 && col === 0) || (row === 1 && col === 0)) {
+          tile.setAttribute("data-hint", "? + ? = 11");
+          tile.style.backgroundColor = "#cceaff";
+        }
+         if ((row === 8 && col === 5)|| (row === 8 && col === 6)|| (row === 8 && col === 7)) {
+          tile.setAttribute("data-hint", "? +2+1= 9");
+          tile.style.backgroundColor = "#ffe1b3";
+        }
+         if ((row === 6 && col === 6)|| (row === 6 && col === 7)|| (row === 6 && col === 8)) {
+          tile.setAttribute("data-hint", "?+?+?= 15");
+          tile.style.backgroundColor = "#ffe1b3";
+        }
+         if ((row === 7 && col === 6)|| (row === 7 && col === 7)|| (row === 7 && col === 8)|| (row === 8 && col === 8)) {
+          tile.setAttribute("data-hint", "? + 9+ ? + 8= 27");
+          tile.style.backgroundColor = "#fdbcedff";
+        }
+         if ((row === 6 && col === 5)|| (row === 7 && col === 5)|| (row === 7 && col === 4)|| (row === 8 && col === 4)) {
+          tile.setAttribute("data-hint", "4 +?+?+9= 25");
+          tile.style.backgroundColor = "greenyellow";
+        }
+          if ((row === 3 && col === 5)|| (row === 4 && col === 5)|| (row === 5 && col === 5)|| (row === 5 && col === 6)) {
+          tile.setAttribute("data-hint", "?+?+5+9=25");
+          tile.style.backgroundColor = "#fdbcedff";
+        }
+
       }
       
 
