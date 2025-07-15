@@ -44,9 +44,6 @@
   transition: background-color 0.2s ease;
 }
 
-/* #numbers-inserts > p:hover {
-  background-color: lightblue;
-} */
 
 #board{
   padding-top: 10px;

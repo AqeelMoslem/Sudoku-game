@@ -46,6 +46,30 @@ const Medium = [[
   ['7', '5', '4', '3', '9', '6', '2', '1', '8']]
 ];
 
+const Hard = [[
+  ['3', '-', '-', '-', '-', '-', '-', '4', '-'],
+  ['-', '6', '-', '7', '-', '-', '8', '3', '-'],
+  ['4', '-', '-', '-', '3', '-', '-', '-', '-'],
+  ['-', '-', '-', '2', '8', '3', '5', '6', '-'],
+  ['-', '-', '-', '1', '-', '4', '-', '-', '-'],
+  ['-', '2', '-', '-', '-', '-', '-', '-', '4'],
+  ['-', '-', '-', '-', '-', '-', '4', '-', '8'],
+  ['-', '-', '-', '-', '-', '6', '-', '-', '-'],
+  ['1', '-', '-', '4', '-', '-', '-', '-', '-']
+],[
+  ['3', '8', '5', '6', '9', '1', '7', '4', '2'],
+  ['9', '6', '1', '7', '4', '2', '8', '3', '5'],
+  ['4', '7', '2', '8', '3', '5', '6', '9', '1'],
+  ['7', '1', '4', '2', '8', '3', '5', '6', '9'],
+  ['6', '5', '9', '1', '7', '4', '2', '8', '3'],
+  ['8', '2', '3', '5', '6', '9', '1', '7', '4'],
+  ['5', '3', '6', '9', '1', '7', '4', '2', '8'],
+  ['2', '4', '8', '3', '5', '6', '9', '1', '7'],
+  ['1', '9', '7', '4', '2', '8', '3', '5', '6']
+]];
+
+
+
 let selectnum, selectTile;
 let disSelect, level;
 let gameOver = false;
@@ -86,7 +110,9 @@ function PlayGame() {
     // 26 block 
     board = Medium[0];
     level = "Medium";
-  }
+  } else {board = Hard[0];
+    level = "Hard";}
+
   disSelect = false;
   gameOver = false;  
   generateBoard(board);
@@ -281,7 +307,7 @@ function updatemove() {
       solution = easy[1];
     } else if (id("difer2").checked) {
       solution = Medium[1];
-    }
+    } else {solution = Hard[1];}
 
     const index = parseInt(selectTile.id);
     const row = Math.floor(index / 9);
@@ -303,7 +329,7 @@ function checkAllTiles() {
     solution = easy[1]; 
   } else if (id("difer2").checked) {
     solution = Medium[1]; 
-  }
+  } else {solution = Hard[1];}
 
   const tiles = qsa(".tile");
   let foundError = false;
