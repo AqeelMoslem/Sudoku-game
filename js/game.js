@@ -73,6 +73,7 @@ const Hard = [[
 let selectnum, selectTile;
 let disSelect, level;
 let gameOver = false;
+let lives = 3;
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -82,7 +83,7 @@ window.onload = function() {
 
   for (let num = 0; num < id("numbers-inserts").children.length; num++) {
     id("numbers-inserts").children[num].addEventListener("click", function() {
-      if (!disSelect && !gameOver) {  // منع التعديل لو اللعبة مغلقة
+      if (!disSelect && !gameOver) {  
         if (this.classList.contains("selected")) {
           this.classList.remove("selected");
           selectnum = null;
@@ -100,6 +101,9 @@ window.onload = function() {
 };
 
 function PlayGame() {
+  lives = 3;
+id("lives").textContent = "Lives: " + lives;
+
   let board;
 
   if (id("difer1").checked) {
@@ -359,6 +363,8 @@ function updatemove() {
   }
 }
 
+
+
 function checkAllTiles() {
   let solution;
 
@@ -366,7 +372,9 @@ function checkAllTiles() {
     solution = easy[1]; 
   } else if (id("difer2").checked) {
     solution = Medium[1]; 
-  } else {solution = Hard[1];}
+  } else {
+    solution = Hard[1];
+  }
 
   const tiles = qsa(".tile");
   let foundError = false;
@@ -378,33 +386,67 @@ function checkAllTiles() {
 
     if (tile.textContent === "") {
       incomplete = true;  
-      tile.style.backgroundColor = ""; 
-    } else if (tile.textContent === solution[row][col]) {
-      tile.style.backgroundColor = "lightgreen"; 
-    } else {
-      tile.style.backgroundColor = "lightcoral"; 
+    } else if (tile.textContent !== solution[row][col]) {
       foundError = true;
     }
   });
 
-const messageEl = id("message");
+  const messageEl = id("message");
 
-if (incomplete) {
-  disSelect = false;
-  messageEl.style.color = "black";
-  messageEl.textContent = "Please complete all the blocks.";
-} else if (foundError) {
-  // gameOver = true;
-  disSelect = false;
-  messageEl.style.color = "red";
-  messageEl.textContent = "There are errors! You must restart to try again.";
-} else {
-  disSelect = true;
-  messageEl.style.color = "green";
-  messageEl.textContent = "Congratulations! All answers are correct.";
+  if (incomplete || foundError) {
+    if (level === "Hard") {
+      if (lives > 0) {
+        lives--;
+      }
+      if (lives <= 0) {
+        lives = 0; 
+        gameOver = true;
+        disSelect = true;
+        messageEl.style.color = "red";
+        messageEl.textContent = "Game over! You've used all your lives.";
+      } else {
+        messageEl.style.color = "orange";
+        messageEl.textContent = `There are errors or empty cells. You have ${lives} lives left.`;
+      }
+
+      id("lives").textContent = "Lives: " + lives;
+
+      // No color feedback in hard mode
+      tiles.forEach(tile => {
+        tile.style.backgroundColor = "";
+      });
+
+    } else {
+      // Easy/Medium feedback
+      tiles.forEach((tile, index) => {
+        const row = Math.floor(index / 9);
+        const col = index % 9;
+
+        if (tile.textContent === "") {
+          tile.style.backgroundColor = "";
+        } else if (tile.textContent === solution[row][col]) {
+          tile.style.backgroundColor = "lightgreen";
+        } else {
+          tile.style.backgroundColor = "lightcoral";
+        }
+      });
+
+      disSelect = false;
+      messageEl.style.color = "red";
+      messageEl.textContent = "There are errors! You must restart to try again.";
+    }
+  } else {
+    // No errors and complete
+    tiles.forEach(tile => {
+      tile.style.backgroundColor = "lightgreen";
+    });
+
+    disSelect = true;
+    messageEl.style.color = "green";
+    messageEl.textContent = "Congratulations! All answers are correct.";
+  }
 }
 
-}
 
 
 function clearPrev() {
@@ -423,6 +465,8 @@ id("resetBtn").addEventListener("click", function() {
   gameOver = false;
   disSelect = false;
   clearPrev();
+lives = 3;
+id("lives").textContent = "Lives: 3";
 
 
   PlayGame();
