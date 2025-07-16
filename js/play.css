@@ -1,77 +1,81 @@
-.hidden{
-  display: none;
-}
-#reset {
-    background-color: rgb(252, 252, 252);
-    color: aqua;
-}
-#game{
-  
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  
-}
-.hint {
-  color: gray;
-  font-size: 10pt;
-}
-
-#numbers-inserts {
-  display: grid;
-  grid-template-columns: repeat(3, 30px); 
-  grid-gap: 8px; 
-  justify-content: center;
-  background-color: #f0f0f0;
-  padding: 10px;
-  border: 2px solid black;
-  border-radius: 10px;
-  width: fit-content;
-  margin: 10px auto;
-}
-
-#numbers-inserts > p {
-  border: 1px solid black;
-  border-radius: 20%;
-  width: 30px;
-  height: 30px;
-  font-size: 14pt;
-  text-align: center;
-  line-height: 30px;
+/*-------------------- Reset وتنسيق عام --------------------*/
+* {
+  box-sizing: border-box;
   margin: 0;
-  cursor: pointer;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  min-height: 100vh;
+  padding: 15px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*-------------------- عنوان اللعبة --------------------*/
+h1 {
+  font-size: 28px;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 2px solid #4CAF50;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/*-------------------- شريط الحالة Lives و Timer --------------------*/
+.status-bar {
+  display: flex;
+  gap: 40px;
+  font-size: 18px;
+  margin: 0 auto 15px;
+  justify-content: center;
+  width: 100%;
+  max-width: 620px;
+}
+
+/*-------------------- الحاوية الرئيسية للعبة --------------------*/
+#game {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 620px;
+}
+
+/*-------------------- لوحة السودوكو --------------------*/
+#board {
+  display: grid;
+  grid-template-columns: repeat(9, 28px);
+  grid-template-rows: repeat(9, 28px);
+  gap: 2px;
   background-color: white;
+  padding: 10px;
+  border: 2px solid #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/*-------------------- بلاطات اللوحة --------------------*/
+.tile {
+  width: 28px;
+  height: 28px;
+  text-align: center;
+  font-size: 15pt;
+  border: 1px solid #999;
+  line-height: 28px;
+  position: relative;
   transition: background-color 0.2s ease;
 }
 
-
-#board{
-  padding-top: 10px;
-  margin-top: 10px ;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: flex-start;
-  width: 300px;
-  height: 300px;
-}
-.tile{
-  border: 1px solid black;
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  margin: 0;
-  vertical-align: middle;
-  font-size: 20pt;
-}
-.tile {
-  position: relative;
-}
 .tile.selected {
   background-color: #a0e7e5;
   border: 1px solid #0077b6;
   box-shadow: 0 0 5px #0077b6;
-  transition: all 0.2s ease;
 }
 
 .tile:hover::after {
@@ -86,34 +90,105 @@
   border-radius: 5px;
   font-size: 10pt;
   white-space: nowrap;
-  /* z-index: 10; */
-  z-index: 100;
+  z-index: 10;
   box-shadow: 0 0 5px rgba(0,0,0,0.3);
 }
 
-#numbers-inserts > p.selected {
-  background-color: aqua;
-  color: black;
-  font-weight: bold;
-  border: 2px solid black;
-  transform: scale(1.1); /* يكبر شوي */
-  transition: all 0.2s ease;
+.bottomBorder {
+  border-bottom: 3px solid #000;
 }
 
-.bottomBorder{
-border-bottom: 3px solid black;
+.rightBorder {
+  border-right: 3px solid #000;
 }
-.rightBorder{
-border-right: 3px solid black;
-}
-footer{
-  text-align:start;
-  background-color: lightgrey;
-}
+
 .tile.correct {
   background-color: lightgreen;
 }
+
 .incorrect {
   background-color: lightcoral;
   transition: background-color 0.3s ease;
+}
+
+/*-------------------- لوحة أرقام الإدخال --------------------*/
+#numbers-inserts {
+  display: grid;
+  grid-template-columns: repeat(3, 28px);
+  gap: 8px;
+  background-color: #e8f5e9;
+  padding: 15px;
+  border: 2px solid #4CAF50;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(76,175,80,0.3);
+}
+
+#numbers-inserts > p {
+  width: 28px;
+  height: 28px;
+  text-align: center;
+  font-size: 13pt;
+  line-height: 28px;
+  background-color: white;
+  border: 1px solid #4CAF50;
+  border-radius: 20%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#numbers-inserts > p.selected {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+  transform: scale(1.1);
+  border: 2px solid #388E3C;
+}
+
+/*-------------------- قسم الإعدادات: اختيار المستوى + أزرار --------------------*/
+.seting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  max-width: 620px;
+  width: 100%;
+}
+
+.seting #difer {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.seting label {
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/*-------------------- رسالة الحالة --------------------*/
+#message {
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: #d32f2f; /* أحمر تنبيه */
+  max-width: 620px;
+  width: 100%;
 }

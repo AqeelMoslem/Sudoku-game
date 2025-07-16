@@ -1,51 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="play.css">
-    <script defer src="game.js"></script>
-    <title>Game Play</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="play.css" />
+  <script defer src="game.js"></script>
+  <title>Sudoku Game</title>
 </head>
 <body>
-   <p id="lives">Lives: 3</p>
-   <div id="timer">Time: 0s</div>
 
-     <div id="game">
-        <div id="board"></div>
+  <h1>Sudoku Game</h1>
 
-          
-           <div id="numbers-inserts" class="hidden">
-        <p id="num1">1</p>
-        <p id="num2">2</p>
-        <p id="num3">3</p>
-        <p id="num4">4</p>
-        <p id="num5">5</p>
-        <p id="num6">6</p>
-        <p id="num7">7</p>
-        <p id="num8">8</p>
-        <p id="num9">9</p> </div>
+  <div class="status-bar">
+    <p id="lives">Lives: 3</p>
+    <div id="timer">Time: 0s</div>
+  </div>
 
+  <div id="game">
+    <div id="board"></div>
 
-       
-      </div>
-
-
-
-       <footer>
-        <div class="seting">
-      
-      <div id="difer">
-       <label><input id="difer1" type="radio" name= "difer" value="easy">Easy</label>
-        <label><input id="difer2" type="radio" name= "difer" value="medium">Medium</label>
-        <label><input id="difer3" type="radio" name= "difer" value="hard">Hard</label></div>
-     <button id="Start">Start</button>
-        <button id="resetBtn">Restart</button>
-        <button id="checkBtn">Check</button>
+    <div id="numbers-inserts" class="hidden">
+      <p id="num1">1</p>
+      <p id="num2">2</p>
+      <p id="num3">3</p>
+      <p id="num4">4</p>
+      <p id="num5">5</p>
+      <p id="num6">6</p>
+      <p id="num7">7</p>
+      <p id="num8">8</p>
+      <p id="num9">9</p>
     </div>
-        
-        <div id="message"></div>
-       </footer>
-       
+  </div>
+
+  
+    <div class="seting">
+      <div id="difer">
+        <label><input id="difer1" type="radio" name="difer" value="easy"> Easy</label>
+        <label><input id="difer2" type="radio" name="difer" value="medium"> Medium</label>
+        <label><input id="difer3" type="radio" name="difer" value="hard"> Hard</label>
+      </div>
+      <button id="Start">Start</button>
+      <button id="resetBtn">Restart</button>
+      <button id="checkBtn">Check</button>
+    </div>
+    <div id="message"></div>
+  
+
 </body>
 </html>
