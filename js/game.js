@@ -490,15 +490,19 @@ function startTimer() {
     timerInterval = setInterval(() => {
       secondsElapsed++;
       id("timer").textContent = `Time: ${secondsElapsed}s`;
+
     }, 1000);
 
   } else if (level === "Medium") {
     secondsElapsed = 300; // 5 دقائق
-    id("timer").textContent = `Time Left: ${secondsElapsed}s`;
+    
+
+id("timer").textContent = `Time Left: ${formatTime(secondsElapsed)}`;
 
     timerInterval = setInterval(() => {
       secondsElapsed--;
-      id("timer").textContent = `Time Left: ${secondsElapsed}s`;
+      id("timer").textContent = `Time Left: ${formatTime(secondsElapsed)}`;
+
 
       if (secondsElapsed <= 0) {
         clearInterval(timerInterval);
@@ -511,11 +515,13 @@ function startTimer() {
 
   } else if (level === "Hard") {
     secondsElapsed = 600; // 10 minte
-    id("timer").textContent = `Time Left: ${secondsElapsed}s`;
+    id("timer").textContent = `Time Left: ${formatTime(secondsElapsed)}`;
+
 
     timerInterval = setInterval(() => {
       secondsElapsed--;
-      id("timer").textContent = `Time Left: ${secondsElapsed}s`;
+      id("timer").textContent = `Time Left: ${formatTime(secondsElapsed)}`;
+
 
       if (secondsElapsed <= 0) {
         clearInterval(timerInterval);
@@ -533,6 +539,11 @@ function stopTimer() {
   clearInterval(timerInterval);
 }
 
+function formatTime(seconds) {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+}
 
 
 function clearPrev() {
