@@ -1,4 +1,4 @@
-/*-------------------- Reset وتنسيق عام --------------------*/
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -16,7 +16,6 @@ body {
   align-items: center;
 }
 
-/*-------------------- عنوان اللعبة --------------------*/
 h1 {
   font-size: 28px;
   padding: 10px 20px;
@@ -27,7 +26,6 @@ h1 {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/*-------------------- شريط الحالة Lives و Timer --------------------*/
 .status-bar {
   display: flex;
   gap: 40px;
@@ -38,7 +36,6 @@ h1 {
   max-width: 620px;
 }
 
-/*-------------------- الحاوية الرئيسية للعبة --------------------*/
 #game {
   display: flex;
   gap: 20px;
@@ -48,7 +45,6 @@ h1 {
   max-width: 620px;
 }
 
-/*-------------------- لوحة السودوكو --------------------*/
 #board {
   display: grid;
   grid-template-columns: repeat(9, 28px);
@@ -60,7 +56,6 @@ h1 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/*-------------------- بلاطات اللوحة --------------------*/
 .tile {
   width: 28px;
   height: 28px;
@@ -111,7 +106,6 @@ h1 {
   transition: background-color 0.3s ease;
 }
 
-/*-------------------- لوحة أرقام الإدخال --------------------*/
 #numbers-inserts {
   display: grid;
   grid-template-columns: repeat(3, 28px);
@@ -144,21 +138,20 @@ h1 {
   border: 2px solid #388E3C;
 }
 
-/*-------------------- قسم الإعدادات: اختيار المستوى + أزرار --------------------*/
 .seting {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   gap: 15px;
   flex-wrap: wrap;
   margin-top: 20px;
-  max-width: 620px;
+  max-width: 640px;
   width: 100%;
 }
 
 .seting #difer {
   display: flex;
-  gap: 15px;
+  gap: 12px;
   align-items: center;
 }
 
@@ -182,13 +175,12 @@ button:hover {
   background-color: #45a049;
 }
 
-/*-------------------- رسالة الحالة --------------------*/
 #message {
   margin-top: 15px;
   font-size: 16px;
   font-weight: bold;
   text-align: center;
-  color: #d32f2f; /* أحمر تنبيه */
+  color: #d32f2f; 
   max-width: 620px;
   width: 100%;
 }

@@ -485,11 +485,11 @@ function startTimer() {
 
   if (level === "Easy") {
     secondsElapsed = 0;
-    id("timer").textContent = "Time: 0s";
+    id("timer").textContent = "Time: 00:00";
 
     timerInterval = setInterval(() => {
       secondsElapsed++;
-      id("timer").textContent = `Time: ${secondsElapsed}s`;
+      id("timer").textContent = `Time: ${formatTime(secondsElapsed)}`;
 
     }, 1000);
 
