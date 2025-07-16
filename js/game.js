@@ -74,6 +74,9 @@ let selectnum, selectTile;
 let disSelect, level;
 let gameOver = false;
 let lives = 3;
+let timerInterval;
+let secondsElapsed = 0;
+
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -100,29 +103,56 @@ window.onload = function() {
   }
 };
 
+// function PlayGame() {
+//   lives = 3;
+// id("lives").textContent = "Lives: " + lives;
+
+//   let board;
+
+//   if (id("difer1").checked) {
+//     // 31 block easy
+//     board = easy[0];
+//     level = "Easy";
+//   } else if (id("difer2").checked) {
+//     // 26 block 
+//     board = Medium[0];
+//     level = "Medium";
+//   } else {board = Hard[0];
+//     level = "Hard";}
+
+//   disSelect = false;
+//   gameOver = false;  
+//   generateBoard(board);
+
+//   id("numbers-inserts").classList.remove("hidden");
+// }
+
 function PlayGame() {
   lives = 3;
-id("lives").textContent = "Lives: " + lives;
+  id("lives").textContent = "Lives: " + lives;
 
   let board;
 
   if (id("difer1").checked) {
-    // 31 block easy
     board = easy[0];
     level = "Easy";
+    startTimer(); 
   } else if (id("difer2").checked) {
-    // 26 block 
     board = Medium[0];
     level = "Medium";
-  } else {board = Hard[0];
-    level = "Hard";}
+    stopTimer(); 
+  } else {
+    board = Hard[0];
+    level = "Hard";
+    stopTimer(); 
+  }
 
   disSelect = false;
-  gameOver = false;  
+  gameOver = false;
   generateBoard(board);
-
   id("numbers-inserts").classList.remove("hidden");
 }
+
 
 function generateBoard(boardArray) {
   clearPrev();
@@ -137,7 +167,7 @@ function generateBoard(boardArray) {
         tile.textContent = value;
       } else {
         tile.addEventListener("click", function() {
-          if (!disSelect && !gameOver) {  ////no change after close the game
+          if (!disSelect && !gameOver) { 
             if (tile.classList.contains("selected")) {
               tile.classList.remove("selected");
               selectTile = null;
@@ -411,13 +441,13 @@ function checkAllTiles() {
 
       id("lives").textContent = "Lives: " + lives;
 
-      // No color feedback in hard mode
+      //hard no color
       tiles.forEach(tile => {
         tile.style.backgroundColor = "";
       });
 
     } else {
-      // Easy/Medium feedback
+      // Easy/Medium
       tiles.forEach((tile, index) => {
         const row = Math.floor(index / 9);
         const col = index % 9;
@@ -427,13 +457,13 @@ function checkAllTiles() {
         } else if (tile.textContent === solution[row][col]) {
           tile.style.backgroundColor = "lightgreen";
         } else {
-          tile.style.backgroundColor = "lightcoral";
+          tile.style.backgroundColor = ""; //no show the error
         }
       });
 
       disSelect = false;
-      messageEl.style.color = "red";
-      messageEl.textContent = "There are errors! You must restart to try again.";
+      messageEl.style.color = "orange";
+      messageEl.textContent = "There are still incorrect or empty tiles. Keep trying!";
     }
   } else {
     // No errors and complete
@@ -444,7 +474,24 @@ function checkAllTiles() {
     disSelect = true;
     messageEl.style.color = "green";
     messageEl.textContent = "Congratulations! All answers are correct.";
+    stopTimer(); 
   }
+}
+
+
+function startTimer() {
+  stopTimer(); 
+  secondsElapsed = 0;
+  id("timer").textContent = "Time: 0s";
+
+  timerInterval = setInterval(() => {
+    secondsElapsed++;
+    id("timer").textContent = `Time: ${secondsElapsed}s`;
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
 }
 
 
@@ -468,7 +515,7 @@ id("resetBtn").addEventListener("click", function() {
 lives = 3;
 id("lives").textContent = "Lives: 3";
 
-
+stopTimer();
   PlayGame();
 
   
