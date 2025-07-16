@@ -425,19 +425,20 @@ function checkAllTiles() {
 
   if (incomplete || foundError) {
     if (level === "Hard") {
-      if (lives > 0) {
-        lives--;
-      }
-      if (lives <= 0) {
-        lives = 0; 
-        gameOver = true;
-        disSelect = true;
-        messageEl.style.color = "red";
-        messageEl.textContent = "Game over! You've used all your lives.";
-      } else {
-        messageEl.style.color = "orange";
-        messageEl.textContent = `There are errors or empty cells. You have ${lives} lives left.`;
-      }
+  if (lives > 0) {
+    lives--;
+  }
+  if (lives <= 0) {
+    lives = 0; 
+    gameOver = true;
+    disSelect = true;
+    stopTimer(); 
+    messageEl.style.color = "red";
+    messageEl.textContent = "Game over! You've used all your lives.";
+  } else {
+    messageEl.style.color = "orange";
+    messageEl.textContent = `There are errors or empty cells. You have ${lives} lives left.`;
+  }
 
       id("lives").textContent = "Lives: " + lives;
 
@@ -480,7 +481,7 @@ function checkAllTiles() {
 
 
 function startTimer() {
-  stopTimer(); // تأكد من إيقاف أي مؤقت شغال
+  stopTimer(); 
 
   if (level === "Easy") {
     secondsElapsed = 0;
@@ -509,7 +510,7 @@ function startTimer() {
     }, 1000);
 
   } else if (level === "Hard") {
-    secondsElapsed = 600; // 10 دقائق
+    secondsElapsed = 600; // 10 minte
     id("timer").textContent = `Time Left: ${secondsElapsed}s`;
 
     timerInterval = setInterval(() => {
