@@ -133,19 +133,19 @@ function PlayGame() {
 
   let board;
 
-  if (id("difer1").checked) {
-    board = easy[0];
-    level = "Easy";
-    startTimer(); 
-  } else if (id("difer2").checked) {
-    board = Medium[0];
-    level = "Medium";
-    stopTimer(); 
-  } else {
-    board = Hard[0];
-    level = "Hard";
-    stopTimer(); 
-  }
+if (id("difer1").checked) {
+  board = easy[0];
+  level = "Easy";
+} else if (id("difer2").checked) {
+  board = Medium[0];
+  level = "Medium";
+} else {
+  board = Hard[0];
+  level = "Hard";
+}
+
+startTimer(); 
+
 
   disSelect = false;
   gameOver = false;
@@ -480,15 +480,53 @@ function checkAllTiles() {
 
 
 function startTimer() {
-  stopTimer(); 
-  secondsElapsed = 0;
-  id("timer").textContent = "Time: 0s";
+  stopTimer(); // تأكد من إيقاف أي مؤقت شغال
 
-  timerInterval = setInterval(() => {
-    secondsElapsed++;
-    id("timer").textContent = `Time: ${secondsElapsed}s`;
-  }, 1000);
+  if (level === "Easy") {
+    secondsElapsed = 0;
+    id("timer").textContent = "Time: 0s";
+
+    timerInterval = setInterval(() => {
+      secondsElapsed++;
+      id("timer").textContent = `Time: ${secondsElapsed}s`;
+    }, 1000);
+
+  } else if (level === "Medium") {
+    secondsElapsed = 300; // 5 دقائق
+    id("timer").textContent = `Time Left: ${secondsElapsed}s`;
+
+    timerInterval = setInterval(() => {
+      secondsElapsed--;
+      id("timer").textContent = `Time Left: ${secondsElapsed}s`;
+
+      if (secondsElapsed <= 0) {
+        clearInterval(timerInterval);
+        gameOver = true;
+        disSelect = true;
+        id("message").style.color = "red";
+        id("message").textContent = "Time's up! Game Over.";
+      }
+    }, 1000);
+
+  } else if (level === "Hard") {
+    secondsElapsed = 600; // 10 دقائق
+    id("timer").textContent = `Time Left: ${secondsElapsed}s`;
+
+    timerInterval = setInterval(() => {
+      secondsElapsed--;
+      id("timer").textContent = `Time Left: ${secondsElapsed}s`;
+
+      if (secondsElapsed <= 0) {
+        clearInterval(timerInterval);
+        gameOver = true;
+        disSelect = true;
+        id("message").style.color = "red";
+        id("message").textContent = "Time's up! Game Over.";
+      }
+    }, 1000);
+  }
 }
+
 
 function stopTimer() {
   clearInterval(timerInterval);
