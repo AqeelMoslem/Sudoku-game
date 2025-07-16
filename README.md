@@ -2,7 +2,7 @@
 
 ![Sudoku-Game](https://i.imgur.com/6HtEfW8.jpeg)
 
-* **[Play](sudoku_game.surge.sh)**
+* **[Play](https://sudoku_game.surge.sh)**
 A fun puzzle game where you fill a 9×9 grid with numbers from 1 to 9, making sure no number repeats in any row, column, or 3×3 box. Includes little hints to help you think logically.
 ## Objective
 
