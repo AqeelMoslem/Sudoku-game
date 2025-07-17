@@ -103,29 +103,7 @@ window.onload = function() {
   }
 };
 
-// function PlayGame() {
-//   lives = 3;
-// id("lives").textContent = "Lives: " + lives;
 
-//   let board;
-
-//   if (id("difer1").checked) {
-//     // 31 block easy
-//     board = easy[0];
-//     level = "Easy";
-//   } else if (id("difer2").checked) {
-//     // 26 block 
-//     board = Medium[0];
-//     level = "Medium";
-//   } else {board = Hard[0];
-//     level = "Hard";}
-
-//   disSelect = false;
-//   gameOver = false;  
-//   generateBoard(board);
-
-//   id("numbers-inserts").classList.remove("hidden");
-// }
 
 function PlayGame() {
   lives = 3;
