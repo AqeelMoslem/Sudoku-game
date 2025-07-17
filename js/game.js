@@ -552,7 +552,7 @@ function startTimer() {
     }, 1000);
 
   } else if (level === "Medium") {
-    secondsElapsed = 300; // 5 دقائق
+    secondsElapsed = 300; 
     
 
 id("timer").textContent = `Time Left: ${formatTime(secondsElapsed)}`;
@@ -572,7 +572,7 @@ id("timer").textContent = `Time Left: ${formatTime(secondsElapsed)}`;
     }, 1000);
 
   } else if (level === "Hard") {
-    secondsElapsed = 600; // 10 minte
+    secondsElapsed = 600; 
     id("timer").textContent = `Time Left: ${formatTime(secondsElapsed)}`;
 
 

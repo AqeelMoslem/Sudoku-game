@@ -14,10 +14,10 @@ The goal is to complete a 9x9 Sudoku grid using numbers from 1 to 9 without repe
 
 
 ## How to Play
-
-1. Click ***Start*** to begin the game
-2. ***Enter numbers*** following Sudoku rules
-3. Click ***Check*** to validate your input
+1. ***Choose difficulty***
+2. Click ***Start*** to begin the game
+3. ***Enter numbers*** following Sudoku rules
+4. Click ***Check*** to validate your input
 >  Hints like: Sum of two cells = 13”
 
 
